@@ -1,0 +1,1 @@
+npm prune . && npm install . && node table_gen.js

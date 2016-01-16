@@ -1,0 +1,27 @@
+lambda:
+  build: .
+  container_name: python-lambda-local
+  environment:
+    - FUNCTION_NAME=hello
+  volumes:
+    - ./:/usr/src
+  links:
+    - dynamodb
+  #dns: 8.8.8.8
+  working_dir: /usr/src
+dynamodb:
+  container_name: dynamodb-local
+  image: modli/dynamodb
+  expose:
+    - "8000"
+init:
+  image: node:latest
+  container_name: init-local
+  environment:
+    - DYNAMODB_ENDPOINT=http://dynamodb:8000
+  volumes:
+    - ./db_gen:/db_gen
+  links:
+    - dynamodb
+  working_dir: /db_gen
+  command: /bin/bash init.sh
