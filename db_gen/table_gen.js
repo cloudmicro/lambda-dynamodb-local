@@ -2,13 +2,6 @@ var aws = require('aws-sdk');
 var doc = require('dynamodb-doc');
 var fs = require('fs');
 
-/*
-var accessKeyId = process.env.ACCESS_KEY || 'Temp';
-var secretAccessKey = process.env.SECRET_KEY || 'Temp';
-var endpoint = process.env.DYNAMODB_ENDPOINT || 'http://192.168.99.100:8000';
-var region = process.env.AWS_REGION || 'us-east-1';
-*/
-
 aws.config.update({
 	accessKeyId: process.env.ACCESS_KEY || 'Temp',
 	secretAccessKey: process.env.SECRET_KEY || 'Temp',
@@ -18,33 +11,6 @@ aws.config.update({
 
 var schema = process.env.SCHEMA_LOCATION || './tables_dynamodb/';
 var sampleData = process.env.DATA_LOCATION || './tables_dynamodb_sampledata/';
-
-//NOTE: this is no longer necessary?
-/*
-process.argv.forEach(function (val, index, array) {
-	if (index > 1){
-		if (val.split("=").length == 2){
-			console.log(index + ': ' + val);
-			switch (val.split("=")[0].toLowerCase()) {
-				case "accesskeyid":
-					accessKeyId = val.split("=")[1];
-					break;
-				case "secretaccesskey":
-					secretAccessKey = val.split("=")[1];
-					break;
-				case "endpoint":
-					endpoint = val.split("=")[1];
-					break;
-				case "region":
-					region = val.split("=")[1];
-					break;
-			}
-		}
-	}
-});
-*/
-
-
 
 dynamodb = new doc.DynamoDB(new aws.DynamoDB());
 
