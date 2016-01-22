@@ -11,8 +11,7 @@ aws.config.update({
 
 var schema = process.env.SCHEMA_LOCATION || './tables_dynamodb/';
 var sampleData = process.env.DATA_LOCATION || './tables_dynamodb_sampledata/';
-
-dynamodb = new doc.DynamoDB(new aws.DynamoDB());
+var dynamodb = new doc.DynamoDB(new aws.DynamoDB());
 
 fs.readdir(schema, function(err, items) {
 	if (err) {
@@ -27,11 +26,11 @@ function makeTables(items){
 	for (var i = 0; i < items.length; i++) {
 		var table = items[i].split(".")[0];
 		console.log('making table ' + table);
-		makeTable(table, loadData(table))();
+		createTable(table, loadData(table))();
 	}
 }
 
-var makeTable = function(tableName, cb) {
+function createTable(tableName, cb) {
 	return function() {
 		dynamodb.deleteTable({ TableName: tableName }, function(err, data) {
 		    if (err) {
@@ -60,7 +59,7 @@ var makeTable = function(tableName, cb) {
 	}
 };
 
-var loadData = function(tableName) {
+function loadData(tableName) {
 	return function() {
 		try {
 			var items = require(sampleData + tableName + '.json');
@@ -69,15 +68,11 @@ var loadData = function(tableName) {
 			return;
 		}
 
-		// batch write:
 		var requestItem = {}
 		requestItem[tableName] = [];
 
-		batchWrite = function() {
-		    var params = {
-                RequestItems: requestItem
-            }
-		    dynamodb.batchWriteItem(params, function(err, data) {
+		var batchWrite = function() {
+		    dynamodb.batchWriteItem({ RequestItems: requestItem }, function(err, data) {
                     if (err) {
                         console.log('error in batch write for ' + tableName + ': ' + err);
                     }
@@ -98,28 +93,11 @@ var loadData = function(tableName) {
                 batchWrite();
                 requestItem[tableName] = [];
 		    }
-
 		}
 
 		if (requestItem[tableName].length > 0) {
 		    batchWrite();
 		}
-
-		// not batch write:
-		/*
-		for (var i = 0; i < items.length; i++) {
-			var params = {
-				TableName: tableName,
-				Item: items[i]
-			};
-
-			dynamodb.putItem(params, function(err, data) {
-			    if (err) console.log('error in write item for ' + tableName + ': ' + err); // an error occurred
-			    else console.log('item saved for ' + tableName); // successful response
-			});
-		}
-		*/
-
 	}
 }
 
