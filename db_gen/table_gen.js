@@ -82,7 +82,7 @@ var loadData = function(tableName) {
                         console.log('error in batch write for ' + tableName + ': ' + err);
                     }
                     else {
-                        console.log(JSON.stringify(data) + " items saved for " + tableName);
+                        console.log("items saved for " + tableName);
                     }
                 });
 		}
@@ -95,8 +95,6 @@ var loadData = function(tableName) {
 			});
 
 		    if (i % 25 === 0) {
-		        console.log('in mod ' + i);
-		        console.log(requestItem[tableName].length);
                 batchWrite();
                 requestItem[tableName] = [];
 		    }
@@ -104,7 +102,6 @@ var loadData = function(tableName) {
 		}
 
 		if (requestItem[tableName].length > 0) {
-		    console.log('out mod ' + requestItem[tableName].length);
 		    batchWrite();
 		}
 
