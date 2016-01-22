@@ -2,13 +2,6 @@ var aws = require('aws-sdk');
 var doc = require('dynamodb-doc');
 var fs = require('fs');
 
-/*
-var accessKeyId = process.env.ACCESS_KEY || 'Temp';
-var secretAccessKey = process.env.SECRET_KEY || 'Temp';
-var endpoint = process.env.DYNAMODB_ENDPOINT || 'http://192.168.99.100:8000';
-var region = process.env.AWS_REGION || 'us-east-1';
-*/
-
 aws.config.update({
 	accessKeyId: process.env.ACCESS_KEY || 'Temp',
 	secretAccessKey: process.env.SECRET_KEY || 'Temp',
@@ -18,33 +11,6 @@ aws.config.update({
 
 var schema = process.env.SCHEMA_LOCATION || './tables_dynamodb/';
 var sampleData = process.env.DATA_LOCATION || './tables_dynamodb_sampledata/';
-
-//NOTE: this is no longer necessary?
-/*
-process.argv.forEach(function (val, index, array) {
-	if (index > 1){
-		if (val.split("=").length == 2){
-			console.log(index + ': ' + val);
-			switch (val.split("=")[0].toLowerCase()) {
-				case "accesskeyid":
-					accessKeyId = val.split("=")[1];
-					break;
-				case "secretaccesskey":
-					secretAccessKey = val.split("=")[1];
-					break;
-				case "endpoint":
-					endpoint = val.split("=")[1];
-					break;
-				case "region":
-					region = val.split("=")[1];
-					break;
-			}
-		}
-	}
-});
-*/
-
-
 
 dynamodb = new doc.DynamoDB(new aws.DynamoDB());
 
@@ -107,26 +73,40 @@ var loadData = function(tableName) {
 		var requestItem = {}
 		requestItem[tableName] = [];
 
+		batchWrite = function() {
+		    var params = {
+                RequestItems: requestItem
+            }
+		    dynamodb.batchWriteItem(params, function(err, data) {
+                    if (err) {
+                        console.log('error in batch write for ' + tableName + ': ' + err);
+                    }
+                    else {
+                        console.log(JSON.stringify(data) + " items saved for " + tableName);
+                    }
+                });
+		}
+
 		for (var i = 0; i < items.length; i++) {
-			requestItem[tableName].push({
+	        requestItem[tableName].push({
 				PutRequest: {
 					Item: items[i]
 				}
 			});
+
+		    if (i % 25 === 0) {
+		        console.log('in mod ' + i);
+		        console.log(requestItem[tableName].length);
+                batchWrite();
+                requestItem[tableName] = [];
+		    }
+
 		}
 
-		var params = {
-			RequestItems: requestItem
+		if (requestItem[tableName].length > 0) {
+		    console.log('out mod ' + requestItem[tableName].length);
+		    batchWrite();
 		}
-
-		dynamodb.batchWriteItem(params, function(err, data) {
-		    if (err) {
-		        console.log('error in batch write for ' + tableName + ': ' + err);
-		    }
-		    else {
-		    	console.log("items saved for " + tableName);
-		    }
-		});
 
 		// not batch write:
 		/*
