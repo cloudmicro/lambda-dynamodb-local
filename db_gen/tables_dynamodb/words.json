@@ -1,8 +1,30 @@
 {
     "AttributeDefinitions": [
         {
+            "AttributeName": "language_code",
+            "AttributeType": "S"
+        },
+        {
             "AttributeName": "word",
             "AttributeType": "S"
+        }
+    ],
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "language_code-index",
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "WriteCapacityUnits": 5,
+                "ReadCapacityUnits": 5
+            },
+            "KeySchema": [
+                {
+                    "KeyType": "HASH",
+                    "AttributeName": "language_code"
+                }
+            ]
         }
     ],
     "ProvisionedThroughput": {

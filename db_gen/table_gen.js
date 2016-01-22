@@ -73,26 +73,40 @@ var loadData = function(tableName) {
 		var requestItem = {}
 		requestItem[tableName] = [];
 
+		batchWrite = function() {
+		    var params = {
+                RequestItems: requestItem
+            }
+		    dynamodb.batchWriteItem(params, function(err, data) {
+                    if (err) {
+                        console.log('error in batch write for ' + tableName + ': ' + err);
+                    }
+                    else {
+                        console.log(JSON.stringify(data) + " items saved for " + tableName);
+                    }
+                });
+		}
+
 		for (var i = 0; i < items.length; i++) {
-			requestItem[tableName].push({
+	        requestItem[tableName].push({
 				PutRequest: {
 					Item: items[i]
 				}
 			});
+
+		    if (i % 25 === 0) {
+		        console.log('in mod ' + i);
+		        console.log(requestItem[tableName].length);
+                batchWrite();
+                requestItem[tableName] = [];
+		    }
+
 		}
 
-		var params = {
-			RequestItems: requestItem
+		if (requestItem[tableName].length > 0) {
+		    console.log('out mod ' + requestItem[tableName].length);
+		    batchWrite();
 		}
-
-		dynamodb.batchWriteItem(params, function(err, data) {
-		    if (err) {
-		        console.log('error in batch write for ' + tableName + ': ' + err);
-		    }
-		    else {
-		    	console.log("items saved for " + tableName);
-		    }
-		});
 
 		// not batch write:
 		/*
