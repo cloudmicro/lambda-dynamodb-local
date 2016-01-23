@@ -16,4 +16,5 @@ TODO:
 * handle errors gracefully in build_docker.sh
     * check for existence of required files and handler name - throw meaningful errors if anything is amiss
 * don't make the existence of a resources/local_events/{function_name} a requirement
+* pass an arbitrary event to lambda execution
 * support Lambda functions invoking Lambda functions?
