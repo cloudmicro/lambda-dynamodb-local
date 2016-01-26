@@ -1,7 +1,7 @@
 # AWLess
 This is a Docker-driven local run-time for AWS Python Lambda + DynamoDB.
 ## Usage
-All commands are run in the directory containing the docker-compose.yml file
+All Docker and Docker-compose commands are run in the directory containing the docker-compose.yml file
 ### Mac/Linux
 1. `docker-compose up -d`
 2. `docker-compose run --rm -e FUNCTION_NAME={your function name} lambda`
