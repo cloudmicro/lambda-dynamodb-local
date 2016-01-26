@@ -79,11 +79,11 @@ More info about this directive (as well as how to handle environment-specific co
 on [my Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31). 
 
 ##TODO
-* handle errors gracefully in build_docker.sh
+* handle errors gracefully in run_lambda.sh
     * check for existence of required files and handler name - throw meaningful errors if anything is amiss
-* pre-build pip requirements.txt dependancies when docker image is created
+* pre-build pip requirements.txt dependancies when the Docker image is created
     * this will enhance performance of running containers that load packages defined in requirements.txt
-* don't make the existence of a resources/local_events/{function_name} a requirement
+* don't make the existence of a resources/local_events/{function_name}.json a requirement
 * pass an arbitrary event to lambda execution
 * support Lambda functions invoking Lambda functions
 
