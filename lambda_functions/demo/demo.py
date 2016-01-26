@@ -9,7 +9,7 @@ logger.setLevel(logging.INFO)
 
 @import_config
 def demo_handler(event, context, config):
-    # TODO: put this instantiation logic in its own model class
+    # TODO: put this instantiation logic in its own model class or helper function
     if hasattr(config, 'Session'):
         dynamodb = Session(aws_access_key_id=config.Session.access_key,
                            aws_secret_access_key=config.Session.secret_key,
