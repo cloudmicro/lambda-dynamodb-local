@@ -51,7 +51,7 @@ _For example:_
 * The function handler definition within `hello.py` is named `hello_handler`
 
 Each subdirectory under `lambda_functions` can also include a [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
-file that will include any Python package dependancies.
+file that will include any Python package dependancies required for the Lambda function.
 
 ###local_events
 Each Lambda function must have a corresponding test event. The test event is a json file whose name must match the corresponding
