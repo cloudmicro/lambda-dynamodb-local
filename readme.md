@@ -32,7 +32,7 @@ Three directories are used to create and test Lambda functions and DynamoDB tabl
 The `db_gen` directory contains a node.js application that will create DynamoDB tables and populate them with data.
 
 * Json files for DynamoDB table schemas go in `db_gen/tables`
-* Sample data json files go in `dg_gen/tabledata`
+* Sample data json files go in `dg_gen/table_data`
 * The file names of the sample data file and schema file must match in order to populate tables with corresponding sample data
 
 _For example:_

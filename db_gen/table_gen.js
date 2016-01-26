@@ -68,7 +68,7 @@ function loadData(tableName) {
 			return;
 		}
 
-		var requestItem = {}
+		var requestItem = {};
 		requestItem[tableName] = [];
 
 		var batchWrite = function() {
