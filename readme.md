@@ -89,4 +89,4 @@ on [my Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31).
 
 ###Thanks
 * https://github.com/HDE/python-lambda-local is the nucleus of the local Lambda runtime
-* I'm using the [modli/dynamodb](https://hub.docker.com/r/modli/dynamodb/) from the Docker Hub registry
+* I'm using the [modli/dynamodb](https://hub.docker.com/r/modli/dynamodb/) image from the Docker Hub registry
