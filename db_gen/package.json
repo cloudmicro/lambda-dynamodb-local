@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.2.26",
+    "bluebird": "^3.1.5",
     "dynamodb-doc": "^1.0.0"
   }
 }
