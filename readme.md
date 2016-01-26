@@ -33,7 +33,7 @@ The `db_gen` directory contains a node.js application that will create DynamoDB 
 
 * Json files for DynamoDB table schemas go in `db_gen/tables`
 * Sample data json files go in `dg_gen/tabledata`
-* The file names of the sample data file and schema file must match in order to populate table with corresponding sample data
+* The file names of the sample data file and schema file must match in order to populate tables with corresponding sample data
 
 For example:
 
@@ -45,7 +45,7 @@ on an attribute called "langauge_code"
 Each Lambda function handler file should be placed in a subdirectory under `lambda_functions`. The subdirectory name must
 match the name of the handler file and the name of the handler must follow the format `{subdirectory name}_handler`.
 
-For example:
+_For example:_
 
 * The _hello_ function lives in the following path: `lambda_functions/hello/hello.py`
 * The function handler definition within `hello.py` is named `hello_handler`
@@ -57,14 +57,14 @@ file that will include any Python package dependancies.
 Each Lambda function must have a corresponding test event. The test event is a json file whose name must match the corresponding
 subdirectory name in `lambda_functions`
 
-For example:
+_For example:_
 
 * The test event for the _hello_ function is in `local_events/hello.json`
 
-## Integrating your Lambda function with DynamoDB local
+## Integrating your Lambda function with DynamoDB Local
 A `@import_config` directive needs to be added to any Lambda function that integrates with DynamoDB.
 
-For example, this is how `@import_config` is used in `lambda_functions/demo/demo.py`:
+_For example_, this is how `@import_config` is used in `lambda_functions/demo/demo.py`:
 
 ```python
 @import_config
