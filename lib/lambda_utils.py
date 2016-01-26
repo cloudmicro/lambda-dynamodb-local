@@ -1,3 +1,5 @@
+from boto3.session import Session
+import boto3
 # from: http://docs.aws.amazon.com/lambda/latest/dg/python-logging.html
 import logging
 logger = logging.getLogger()
@@ -28,3 +30,13 @@ def import_config(f):
         return f(*args, **kwargs)
     return wrapper
 
+
+def dynamodb_connect(config):
+    if hasattr(config, 'Session'):
+        dynamodb = Session(aws_access_key_id=config.Session.access_key,
+                           aws_secret_access_key=config.Session.secret_key,
+                           region_name=config.Session.region) \
+            .resource('dynamodb', endpoint_url=config.Dynamodb.endpoint)
+    else:
+        dynamodb = boto3.resource('dynamodb', endpoint_url=config.Dynamodb.endpoint)
+    return dynamodb
