@@ -1,22 +1,39 @@
 # AWLess
-This is a container-driven local run-time for AWS Python Lambda + DynamoDb.
+This is a Docker-driven local run-time for AWS Python Lambda + DynamoDB.
 ## Usage
 All commands are run in the directory containing the docker-compose.yml file
 ### Mac/Linux
 1. `docker-compose up -d`
-2. `docker-compose run --rm -e FUNCTION_NAME=hello lambda`
+2. `docker-compose run --rm -e FUNCTION_NAME={your function name} lambda`
 
-**To re-initialize DyanmoDb Tables**
+**To re-initialize DyanmoDB Tables**
+
 `docker-compose run --rm init`
 
 ### Windows
 *(this requires Docker Toolbox 1.9.1g and must be run with msysgit/Docker Quickstart terminal)*
 
 1. `docker-compose -f docker-compose.yml -f docker-compose-win.yml -p myproject up -d`
-2. `docker run -i --rm -v /$(pwd):/usr/src --add-host=dynamodb:$(docker-machine ip default) -e FUNCTION_NAME=hello myproject_lambda`
+2. `docker run -i --rm -v /$(pwd):/usr/src --add-host=dynamodb:$(docker-machine ip default) -e FUNCTION_NAME={your function name} myproject_lambda`
 
-**To re-initialize DyanmoDb Tables**
+**To re-initialize DyanmoDB Tables**
+
 `docker start -i init-local`
+
+### For example (Mac/Linux)
+Running the following Docker Compose commands will run the "hello" function contained in this project
+
+1. `docker-compose up -d`
+2. `docker-compose run --rm -e FUNCTION_NAME=hello lambda`
+
+## Project Structure
+Three directories are used to create and test Lambda functions and DynamoDB tables.
+###dg_gen
+db_gen contains a node.js application that will create DynamoDB tables and populate them with data.
+
+* Json files for Dynamodb table schemas go in `db_gen/tables`
+* Sample data json files go in `dg_gen/tabledata`
+* The file names of the sample data file and schema file must match in order to populate table with corresponding sample data  
 
 ##TODO
 * handle errors gracefully in build_docker.sh

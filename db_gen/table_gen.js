@@ -9,8 +9,8 @@ aws.config.update({
 	region: process.env.AWS_REGION || 'us-east-1'
 });
 
-var schema = process.env.SCHEMA_LOCATION || './tables_dynamodb/';
-var sampleData = process.env.DATA_LOCATION || './tables_dynamodb_sampledata/';
+var schema = process.env.SCHEMA_LOCATION || './tables/';
+var sampleData = process.env.DATA_LOCATION || './table_data/';
 var dynamodb = new doc.DynamoDB(new aws.DynamoDB());
 
 fs.readdir(schema, function(err, items) {
