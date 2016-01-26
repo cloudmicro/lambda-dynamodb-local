@@ -35,7 +35,7 @@ The `db_gen` directory contains a node.js application that will create DynamoDB 
 * Sample data json files go in `dg_gen/tabledata`
 * The file names of the sample data file and schema file must match in order to populate tables with corresponding sample data
 
-For example:
+_For example:_
 
 * `tables/words.json` will create a table in DynamoDB Local called "words" with a Hash key called "word" and a Global Secondary Index
 on an attribute called "langauge_code"
