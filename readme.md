@@ -28,7 +28,7 @@ Running the following Docker Compose commands will run the _hello_ function cont
 
 ## Project Structure
 Three directories are used to create and test Lambda functions and DynamoDB tables.
-###dg_gen
+###db_gen
 The `db_gen` directory contains a node.js application that will create DynamoDB tables and populate them with data.
 
 * Json files for DynamoDB table schemas go in `db_gen/tables`
