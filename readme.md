@@ -86,6 +86,7 @@ on [my Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31).
 * don't make the existence of a resources/local_events/{function_name}.json a requirement
 * pass an arbitrary event to lambda execution
 * support Lambda functions invoking Lambda functions
+* Make a Yoeman generator
 
 ###Thanks
 * https://github.com/HDE/python-lambda-local is the nucleus of the local Lambda runtime
