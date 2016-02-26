@@ -33,10 +33,9 @@ def import_config(f):
 
 def dynamodb_connect(config):
     if hasattr(config, 'Session'):
-        dynamodb = Session(aws_access_key_id=config.Session.access_key,
+        return Session(aws_access_key_id=config.Session.access_key,
                            aws_secret_access_key=config.Session.secret_key,
                            region_name=config.Session.region) \
             .resource('dynamodb', endpoint_url=config.Dynamodb.endpoint)
     else:
-        dynamodb = boto3.resource('dynamodb', endpoint_url=config.Dynamodb.endpoint)
-    return dynamodb
+        return boto3.resource('dynamodb', endpoint_url=config.Dynamodb.endpoint)
