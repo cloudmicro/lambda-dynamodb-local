@@ -75,7 +75,9 @@ def demo_handler(event, context, config):
     return words["Items"]
 ```
 
-More info about this directive (as well as how to handle environment-specific configurations in Python Lambda) can be found
+Additional configuration items can be injected by editing the `config\docker-config.py` file.
+
+More info about the `@import_config` directive (as well as how to handle environment-specific configurations in Python Lambda) can be found
 on [my Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31). 
 
 ##TODO
