@@ -4,7 +4,7 @@ This is a Docker-driven local run-time for AWS Python Lambda + DynamoDB.
 All Docker and Docker-compose commands are run in the directory containing the docker-compose.yml file
 ### Mac/Linux
 1. `docker-compose up -d`
-2. `docker-compose run --rm -e FUNCTION_NAME={your function name} lambda`
+2. `docker-compose run --rm -e FUNCTION_NAME={your function name} lambda-python`
 
 **To re-initialize DyanmoDB Tables**
 
@@ -14,7 +14,7 @@ All Docker and Docker-compose commands are run in the directory containing the d
 *(this requires Docker Toolbox 1.9.1g and must be run with msysgit/Docker Quickstart terminal)*
 
 1. `docker-compose -f docker-compose.yml -f docker-compose-win.yml -p myproject up -d`
-2. `docker run -i --rm -v /$(pwd):/usr/src --add-host=dynamodb:$(docker-machine ip default) -e FUNCTION_NAME={your function name} myproject_lambda`
+2. `docker run -i --rm -v /$(pwd):/usr/src --add-host=dynamodb:$(docker-machine ip default) -e FUNCTION_NAME={your function name} myproject_lambda-python`
 
 **To re-initialize DyanmoDB Tables**
 
@@ -24,7 +24,7 @@ All Docker and Docker-compose commands are run in the directory containing the d
 Running the following Docker Compose commands will run the _hello_ function contained in this project
 
 1. `docker-compose up -d`
-2. `docker-compose run --rm -e FUNCTION_NAME=hello lambda`
+2. `docker-compose run --rm -e FUNCTION_NAME=hello lambda-python`
 
 ## Project Structure
 Three directories are used to create and test Lambda functions and DynamoDB tables.
