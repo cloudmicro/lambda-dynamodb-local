@@ -1,4 +1,4 @@
-lambda:
+lambda-python:
   build: .
   container_name: python-lambda-local
   environment:
