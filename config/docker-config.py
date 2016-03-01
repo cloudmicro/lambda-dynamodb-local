@@ -1,5 +1,5 @@
 class Dynamodb:
-    words = "words"
+    wordsTable = "words"
     endpoint = "http://dynamodb:8000"
 
 
