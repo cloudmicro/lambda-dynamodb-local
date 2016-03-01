@@ -1,8 +1,6 @@
 lambda-python:
   build: .
   container_name: python-lambda-local
-  environment:
-    - FUNCTION_NAME=hello
   volumes:
     - ./:/usr/src
   links:
