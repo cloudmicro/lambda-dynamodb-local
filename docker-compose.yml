@@ -7,7 +7,6 @@ lambda-python:
     - ./:/usr/src
   links:
     - dynamodb
-  #dns: 8.8.8.8
   working_dir: /usr/src
 dynamodb:
   container_name: dynamodb-local
