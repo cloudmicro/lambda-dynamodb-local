@@ -1,4 +1,4 @@
-# AWLess
+# Cloudmicro for AWS
 This is a Docker-driven local run-time for AWS Python Lambda + DynamoDB.
 ## Usage
 All Docker and Docker-compose commands are run in the directory containing the docker-compose.yml file
@@ -81,7 +81,7 @@ More info about the `@import_config` directive (as well as how to handle environ
 on [Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31). 
 
 ##TODO
-See https://github.com/AWLess/lambda-dynamodb-local/issues
+See https://github.com/cloudmicro/lambda-dynamodb-local/issues
 
 ###Thanks
 * https://github.com/HDE/python-lambda-local is the nucleus of the local Lambda runtime
