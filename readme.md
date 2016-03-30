@@ -18,7 +18,7 @@ All Docker and Docker-compose commands are run in the directory containing the d
 
 **To re-initialize DyanmoDB Tables**
 
-`docker start -i init-local`
+`docker start -i init`
 
 ### For example (Mac/Linux)
 Running the following Docker Compose commands will run the _hello_ function contained in this project
