@@ -1,5 +1,5 @@
 lambda-python:
-  build: .
+  build: ./dockerfiles/Dockerfile_python
   container_name: python-lambda-local
   volumes:
     - ./:/usr/src
