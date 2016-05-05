@@ -1,6 +1,14 @@
-lambda-python:
-  build: ./dockerfiles/Dockerfile_python
-  container_name: python-lambda-local
+#lambda-python:
+#  build: .
+#  container_name: python-lambda-local
+#  volumes:
+#    - ./:/usr/src
+#  links:
+#    - dynamodb
+#  working_dir: /usr/src
+lambda-node:
+  build: .
+  container_name: node-lambda-local
   volumes:
     - ./:/usr/src
   links:
