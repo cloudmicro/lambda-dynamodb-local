@@ -3,7 +3,7 @@ services:
   lambda-python:
     build:
       context: .
-      dockerfile: dockerfiles/python/Dockerfile
+      dockerfile: dockerfiles/python/Dockerfile_python
     container_name: python-lambda-local
     volumes:
       - ./:/usr/src
@@ -13,7 +13,7 @@ services:
   lambda-node:
     build:
       context: .
-      dockerfile: dockerfiles/node/Dockerfile
+      dockerfile: dockerfiles/node/Dockerfile_node
     container_name: node-lambda-local
     volumes:
       - ./:/usr/src
