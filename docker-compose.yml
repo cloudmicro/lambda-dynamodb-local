@@ -1,15 +1,19 @@
 version: '2'
 services:
-  #lambda-python:
-  #  build: .
-  #  container_name: python-lambda-local
-  #  volumes:
-  #    - ./:/usr/src
-  #  links:
-  #    - dynamodb
-  #  working_dir: /usr/src
+  lambda-python:
+    build:
+      context: .
+      dockerfile: dockerfiles/python/Dockerfile
+    container_name: python-lambda-local
+    volumes:
+      - ./:/usr/src
+    links:
+      - dynamodb
+    working_dir: /usr/src
   lambda-node:
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfiles/node/Dockerfile
     container_name: node-lambda-local
     volumes:
       - ./:/usr/src
