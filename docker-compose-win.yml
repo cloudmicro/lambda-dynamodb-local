@@ -1,3 +1,5 @@
-dynamodb:
-  ports:
-    - "8000:8000"
+version: '2'
+services:
+  dynamodb:
+    ports:
+      - "8000:8000"

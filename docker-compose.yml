@@ -1,24 +1,26 @@
-lambda-python:
-  build: .
-  container_name: python-lambda-local
-  volumes:
-    - ./:/usr/src
-  links:
-    - dynamodb
-  working_dir: /usr/src
-dynamodb:
-  container_name: dynamodb-local
-  image: modli/dynamodb
-  expose:
-    - "8000"
-init:
-  image: node:latest
-  container_name: init-local
-  environment:
-    - DYNAMODB_ENDPOINT=http://dynamodb:8000
-  volumes:
-    - ./db_gen:/db_gen
-  links:
-    - dynamodb
-  working_dir: /db_gen
-  command: /bin/bash init.sh
+version: '2'
+services:
+  lambda-python:
+    build: .
+    container_name: python-lambda-local
+    volumes:
+      - ./:/usr/src
+    links:
+      - dynamodb
+    working_dir: /usr/src
+  dynamodb:
+    container_name: dynamodb-local
+    image: modli/dynamodb
+    expose:
+      - "8000"
+  init:
+    image: node:latest
+    container_name: init-local
+    environment:
+      - DYNAMODB_ENDPOINT=http://dynamodb:8000
+    volumes:
+      - ./db_gen:/db_gen
+    links:
+      - dynamodb
+    working_dir: /db_gen
+    command: /bin/bash init.sh
