@@ -28,7 +28,7 @@ Running the following Docker Compose commands will run the _hello_ function cont
 
 ## Project Structure
 Three directories are used to create and test Lambda functions and DynamoDB tables.
-###db_gen
+### db_gen
 The `db_gen` directory contains a node.js application that will create DynamoDB tables and populate them with data.
 
 * Json files for DynamoDB table schemas go in `db_gen/tables`
@@ -41,7 +41,7 @@ _For example:_
 on an attribute called "langauge_code"
 * `table_data/words.json` will populate the "words" table with about 50 English words
 
-###lambda_functions
+### lambda_functions
 Each Lambda function handler file should be placed in a subdirectory under `lambda_functions`. The subdirectory name must
 match the name of the handler file and the name of the handler must follow the format `{subdirectory name}_handler`.
 
@@ -53,7 +53,7 @@ _For example:_
 Each subdirectory under `lambda_functions` can also include a [requirements.txt](https://pip.pypa.io/en/stable/user_guide/#requirements-files)
 file that will include any Python package dependencies required for the Lambda function.
 
-###local_events
+### local_events
 Each Lambda function must have a corresponding test event. The test event is a json file whose name must match the corresponding
 subdirectory name in `lambda_functions`
 
@@ -80,9 +80,9 @@ Additional configuration items can be injected by editing the `config\docker-con
 More info about the `@import_config` directive (as well as how to handle environment-specific configurations in Python Lambda) can be found
 on [Gist](https://gist.github.com/patrickbrandt/21fc41459fe6a6a19e31). 
 
-##TODO
+## TODO
 See https://github.com/cloudmicro/lambda-dynamodb-local/issues
 
-###Thanks
+### Thanks
 * https://github.com/HDE/python-lambda-local is the nucleus of the local Lambda runtime
 * I'm using the [modli/dynamodb](https://hub.docker.com/r/modli/dynamodb/) image from the Docker Hub registry
